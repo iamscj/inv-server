@@ -2,6 +2,22 @@ import { pool } from "../database/db.js";
 
 export const getTCDetails = async (req, res) => {
     console.log("getTCDetails");
+    try {
+        let data = await pool.query(
+            `SELECT
+            converter_no,
+            date
+            FROM
+            tc`
+        );
+        return res.json(data.rows);
+    } catch (error) {
+        // console.log(error)
+        res.json(error);
+    }
+}
+export const getTCDetailsForConverter = async (req, res) => {
+    console.log("getTCDetailsForConverter");
     const converter_no = req.params['converter_no'];
     try {
         let data = await pool.query(
