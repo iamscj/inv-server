@@ -12,7 +12,6 @@ export const getTCDetails = async (req, res) => {
         );
         return res.json(data.rows);
     } catch (error) {
-        // console.log(error)
         res.json(error);
     }
 }
