@@ -47,3 +47,24 @@ export const insertAC = async (req, res) => {
         res.json({ msg: e.detail });
     }
 }
+
+export const insertVCU = async (req, res) => {
+    console.log("/POST insertVCU");
+    const {
+        converter_no,
+        date,
+    } = req.body;
+
+    try {
+        const query = `
+            INSERT INTO vcu (module_no, date)
+            VALUES ('${converter_no}', '${date}');
+        `;
+
+        const result = await pool.query(query);
+        res.json({ msg: "successfull" });
+    }
+    catch (e) {
+        res.json({ msg: e.detail });
+    }
+}
